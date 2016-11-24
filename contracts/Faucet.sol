@@ -1,3 +1,5 @@
+pragma solidity ^0.4.4;
+
 contract Faucet {
     address owner;
     uint256 sendAmount;
@@ -16,7 +18,7 @@ contract Faucet {
         return true;
 	}
 
-	function sendWei(address toWhom) returns (bool) {
+	function sendWei(address toWhom) payable returns (bool) {
         toWhom.send(sendAmount);
         return true;
 	}
@@ -30,4 +32,6 @@ contract Faucet {
 	        suicide(owner);
 	    }
 	}
+
+	function () payable {}
 }
