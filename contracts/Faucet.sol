@@ -4,7 +4,7 @@ contract Faucet {
     address owner;
     uint256 sendAmount;
     
-    function Faucet() {
+    function Faucet() payable {
         owner = msg.sender;
         sendAmount = 1000000000000000000;
     }
@@ -14,13 +14,11 @@ contract Faucet {
     }
 
     function getWei() returns (bool) {
-        msg.sender.send(sendAmount);
-        return true;
+        return msg.sender.send(sendAmount);
     }
 
     function sendWei(address toWhom) payable returns (bool) {
-        toWhom.send(sendAmount);
-        return true;
+        return toWhom.send(sendAmount);
     }
 
     function getSendAmount() returns (uint256) {
