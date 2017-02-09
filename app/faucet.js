@@ -8,7 +8,7 @@ console.log("Coinbase: " + web3.eth.coinbase);
 
 // Your deployed address changes every time you deploy.
 var faucetAddress = "0xf8767ad850761e0682fbb4949a5c51f9c364311b";
-faucetInstance = web3.eth.contract(faucetCompiled.Faucet.info.abiDefinition).at(faucetAddress);
+faucetInstance = web3.eth.contract(faucetCompiled["<stdin>:Faucet"].info.abiDefinition).at(faucetAddress);
 
 // Query eth for balance
 console.log("Contract balance: " + web3.eth.getBalance(faucetAddress));
