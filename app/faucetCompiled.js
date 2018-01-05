@@ -1,76 +1,9 @@
-var faucetCompiled = {
-    "<stdin>:Faucet": {
-        code: "0x60606040525b60008054600160a060020a03191633600160a060020a0316179055670de0b6b3a76400006001555b5b6101c48061003d6000396000f300606060405236156100515763ffffffff60e060020a60003504166312065fe0811461005a578063148f2e5e1461007c5780633ba15036146100a457806390b08a52146100c8578063b603cd80146100ea575b6100585b5b565b005b341561006257fe5b61006a6100fc565b60408051918252519081900360200190f35b610090600160a060020a036004351661010b565b604080519115158252519081900360200190f35b34156100ac57fe5b61009061013b565b604080519115158252519081900360200190f35b34156100d057fe5b61006a610169565b60408051918252519081900360200190f35b34156100f257fe5b610058610170565b005b600160a060020a033016315b90565b600154604051600091600160a060020a0384169181156108fc02919084818181858888f19450505050505b919050565b600154604051600091600160a060020a0333169181156108fc02919084818181858888f19450505050505b90565b6001545b90565b60005433600160a060020a039081169116141561005557600054600160a060020a0316ff5b5b5600a165627a7a72305820dee335bf9dc1ba53ff034471580bfad533e100aa01778c3f86a4ea9802cf88d20029",
-        info: {
-            abiDefinition: [{
-                constant: false,
-                inputs: [],
-                name: "getBalance",
-                outputs: [{
-                    name: "",
-                    type: "uint256"
-                }],
-                payable: false,
-                type: "function"
-            }, {
-                constant: false,
-                inputs: [{
-                    name: "toWhom",
-                    type: "address"
-                }],
-                name: "sendWei",
-                outputs: [{
-                    name: "",
-                    type: "bool"
-                }],
-                payable: true,
-                type: "function"
-            }, {
-                constant: false,
-                inputs: [],
-                name: "getWei",
-                outputs: [{
-                    name: "",
-                    type: "bool"
-                }],
-                payable: false,
-                type: "function"
-            }, {
-                constant: false,
-                inputs: [],
-                name: "getSendAmount",
-                outputs: [{
-                    name: "",
-                    type: "uint256"
-                }],
-                payable: false,
-                type: "function"
-            }, {
-                constant: false,
-                inputs: [],
-                name: "killMe",
-                outputs: [],
-                payable: false,
-                type: "function"
-            }, {
-                inputs: [],
-                payable: true,
-                type: "constructor"
-            }, {
-                payable: true,
-                type: "fallback"
-            }],
-            compilerOptions: "--combined-json bin,abi,userdoc,devdoc --add-std --optimize",
-            compilerVersion: "0.4.9",
-            developerDoc: {
-            methods: {}
-            },
-            language: "Solidity",
-            languageVersion: "0.4.9",
-            source: "pragma solidity ^0.4.5; contract Faucet { address owner; uint256 sendAmount; function Faucet() payable { owner = msg.sender; sendAmount = 1000000000000000000; } function getBalance() returns (uint) { return address(this).balance; } function getWei() returns (bool) { return msg.sender.send(sendAmount); } function sendWei(address toWhom) payable returns (bool) { return toWhom.send(sendAmount); } function getSendAmount() returns (uint256) { return sendAmount; } function killMe() { if (msg.sender == owner) { suicide(owner); } } function () payable {} } ",
-            userDoc: {
-                methods: {}
-            }
-        }
+const faucetCompiled = {
+  "contracts": {
+    "Faucet.sol:Faucet": {
+      "abi": "[{\"constant\":true,\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"toWhom\",\"type\":\"address\"}],\"name\":\"sendWei\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"getWei\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getSendAmount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"killMe\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}]",
+      "bin": "6060604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550670de0b6b3a7640000600181905550610336806100626000396000f300606060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312065fe01461007a578063148f2e5e146100a35780633ba15036146100dc5780638da5cb5b146100f157806390b08a5214610146578063b603cd801461016f575b005b341561008557600080fd5b61008d61019c565b6040518082815260200191505060405180910390f35b34156100ae57600080fd5b6100da600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506101bb565b005b34156100e757600080fd5b6100ef610200565b005b34156100fc57600080fd5b610104610244565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561015157600080fd5b610159610269565b6040518082815260200191505060405180910390f35b341561017a57600080fd5b610182610273565b604051808215151515815260200191505060405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff1631905090565b8073ffffffffffffffffffffffffffffffffffffffff166108fc6001549081150290604051600060405180830381858888f1935050505015156101fd57600080fd5b50565b3373ffffffffffffffffffffffffffffffffffffffff166108fc6001549081150290604051600060405180830381858888f19350505050151561024257600080fd5b565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102d057600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a72305820aa5d22ac6c0adecb8b2ab11f1c739980a91eca470452104a07e224fdd4e410af0029"
     }
+  },
+  "version": "0.4.18+commit.9cf6e910.Linux.g++"
 };

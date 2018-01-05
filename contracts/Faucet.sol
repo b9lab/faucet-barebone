@@ -1,35 +1,35 @@
-pragma solidity ^0.4.5;
+pragma solidity ^0.4.17;
 
 contract Faucet {
-    address owner;
+    address public owner;
     uint256 sendAmount;
     
-    function Faucet() payable {
+    function Faucet() public payable {
         owner = msg.sender;
-        sendAmount = 1000000000000000000;
+        sendAmount = 1 ether;
     }
 
-    function getBalance() returns (uint) {
-         return address(this).balance;
+    function getBalance() public view returns (uint) {
+         return this.balance;
     }
 
-    function getWei() returns (bool) {
-        return msg.sender.send(sendAmount);
+    function getWei() public {
+        msg.sender.transfer(sendAmount);
     }
 
-    function sendWei(address toWhom) payable returns (bool) {
-        return toWhom.send(sendAmount);
+    function sendWei(address toWhom) public {
+        toWhom.transfer(sendAmount);
     }
 
-    function getSendAmount() returns (uint256) {
+    function getSendAmount() public view returns (uint256) {
         return sendAmount;
     }
 
-    function killMe() {
-        if (msg.sender == owner) {
-            suicide(owner);
-        }
+    function killMe() public returns (bool) {
+        require(msg.sender == owner);
+        selfdestruct(owner);
+        return true;
     }
-
-    function () payable {}
+    
+    function() public payable {}
 }
